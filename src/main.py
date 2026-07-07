@@ -1,7 +1,11 @@
-from textnode import TextNode, TextType
+import os, shutil
+from copystatic import copy_files_recursive
+
+PUBLIC_PATH = "public/"
+STATIC_PATH = "static/"
 
 def main():
-    node = TextNode("This is a text node", TextType.BOLD, "https://www.boot.dev")
-    print(node)
-
+    if os.path.exists(PUBLIC_PATH):
+        shutil.rmtree(PUBLIC_PATH)
+    copy_files_recursive(STATIC_PATH, PUBLIC_PATH)
 main()
